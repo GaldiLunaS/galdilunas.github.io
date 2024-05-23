@@ -1,0 +1,518 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot UNINASSAU Garanhuns</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        #chat-container {
+            width: 400px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        #chat-box {
+            flex: 1;
+            overflow-y: scroll;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .bot-message {
+            background: #e1ffc7;
+            align-self: flex-start;
+        }
+        .user-message {
+            background: #d4d4d4;
+            align-self: flex-end;
+        }
+        #input-box {
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+        #user-input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            outline: none;
+        }
+        #send-button {
+            padding: 10px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #logo {
+            width: 100px;
+            display: block;
+            margin: 20px auto;
+        }
+        .clickable {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <img id="logo" src="https://seeklogo.com/images/U/uninassau-logo-8D1A63F2A8-seeklogo.com.png" alt="Logo UNINASSAU">
+        <div id="chat-box">
+            <div class="message bot-message">
+                Olá visitante, sou a assistente virtual da <b>UNINASSAU Garanhuns</b>. É um prazer ter você aqui, por favor, como gostaria de ser chamado?
+            </div>
+        </div>
+        <div id="input-box">
+            <input type="text" id="user-input" placeholder="Digite sua resposta...">
+            <button id="send-button">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+
+        let userName = '';
+
+        document.getElementById("send-button").addEventListener("click", function() {
+            const userInput = document.getElementById("user-input").value.trim();
+            if (userInput !== "") {
+                addMessage(userInput, "user");
+                processInput(userInput);
+                document.getElementById("user-input").value = "";
+            }
+        });
+
+        document.getElementById("user-input").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                document.getElementById("send-button").click();
+            }
+        });
+
+        function addMessage(text, sender) {
+            const chatBox = document.getElementById("chat-box");
+            const messageElement = document.createElement("div");
+            messageElement.classList.add("message", `${sender}-message`);
+            messageElement.innerHTML = text;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function processInput(userInput) {
+            if (!userName) {
+                userName = userInput;
+                addMessage(`Olá <b>${userName}</b>, que bom ter você aqui, qual assunto deseja informação?<br><br><span class="clickable" onclick="sendOption('Cursos')">Cursos</span><br><span class="clickable" onclick="sendOption('CRA')">CRA</span><br><span class="clickable" onclick="sendOption('NAE')">NAE</span><br><span class="clickable" onclick="sendOption('Coordenação de Curso')">Coordenação de Curso</span><br><span class="clickable" onclick="sendOption('EaD')">EaD</span><br><span class="clickable" onclick="sendOption('Tutoria DOL')">Tutoria DOL</span><br><span class="clickable" onclick="sendOption('Direção')">Direção</span>`, "bot");
+            } else {
+                handleResponse(userInput);
+            }
+        }
+
+        function sendOption(option) {
+            addMessage(option, "user");
+            handleResponse(option);
+        }
+
+        function handleResponse(input) {
+            switch (input.toLowerCase()) {
+                case 'sim':
+                    addMessage("Digite o nome do setor que deseja saber o horário e dias de atendimentos:<br><br><span class='clickable' onclick='sendOption(\"CRA\")'>CRA</span><br><span class='clickable' onclick='sendOption(\"NAE\")'>NAE</span><br><span class='clickable' onclick='sendOption(\"Coordenação de Curso\")'>Coordenação de Curso</span><br><span class='clickable' onclick='sendOption(\"EaD\")'>EaD</span><br><span class='clickable' onclick='sendOption(\"Tutoria DOL\")'>Tutoria DOL</span><br><span class='clickable' onclick='sendOption(\"Direção\")'>Direção</span>", "bot");
+                    break;
+                case 'curso':
+                case 'cursos':
+                    addMessage("Nossos cursos disponíveis são:<br><br><span class='clickable' onclick='sendOption(\"Graduação Presencial\")'>Graduação Presencial</span><br><br><span class='clickable' onclick='sendOption(\"Graduação EaD\")'>Graduação EaD</span><br><br><span class='clickable' onclick='sendOption(\"Pós-Graduação\")'>Pós-Graduação</span><br><br><span class='clickable' onclick='sendOption(\"Técnicos\")'>Técnicos</span>", "bot");
+                    break;
+                case 'graduação presencial':
+                    addMessage("Nossos cursos disponíveis são:<br><br>" +
+                               "<span class='clickable' onclick='sendOption(\"Direito\")'>Direito</span><br>" +
+                               "<span class='clickable' onclick='sendOption(\"Enfermagem\")'>Enfermagem</span><br>" +
+                               "<span class='clickable' onclick='sendOption(\"Farmácia\")'>Farmácia</span><br>" +
+                               "<span class='clickable' onclick='sendOption(\"Fisioterapia\")'>Fisioterapia</span><br>" +
+                               "<span class='clickable' onclick='sendOption(\"Medicina Veterinária\")'>Medicina Veterinária</span><br>" +
+                               "<span class='clickable' onclick='sendOption(\"Nutrição\")'>Nutrição</span><br>" +
+                               "<span class='clickable' onclick='sendOption(\"Odontologia\")'>Odontologia</span><br>" +
+                               "<span class='clickable' onclick='sendOption(\"Psicologia\")'>Psicologia</span>", "bot");
+                                   break;
+                case 'graduação ead':
+                    addMessage("Temos Graduação EaD NOTA 5 no MEC, ou seja, NOTA MÁXIMA. Clique no link abaixo e conheça nossos cursos EaD.<br><br><a href='https://www.uninassau.edu.br/graduacao' target='_blank'>Graduação EaD UNINASSAU</a>", "bot");
+                    break;
+                case 'pós-graduação':
+                    addMessage("Temos diversas opções de Pós-Graduação para você se especializar. Clique no link abaixo e conheça nossos cursos de Pós-Graduação.<br><br><a href='https://www.uninassau.edu.br/pos-graduacao' target='_blank'>Pós-Graduação UNINASSAU</a>", "bot");
+                    break;
+                case 'técnicos':
+                    addMessage("Oferecemos cursos técnicos em várias áreas. Clique no link abaixo e conheça nossos cursos técnicos.<br><br><a href='https://www.uninassau.edu.br/tecnicos' target='_blank'>Cursos Técnicos UNINASSAU</a>", "bot");
+                    break;
+                case 'cra':
+                    addMessage("O horário de atendimento do CRA é de segunda a sexta, das 9h às 18h.", "bot");
+                    break;
+                case 'nae':
+                    addMessage("O horário de atendimento do NAE é de segunda a sexta, das 9h às 18h.", "bot");
+                    break;
+                
+case 'coordenação de curso':
+                    addMessage("Qual coordenação deseja informação?<br><br>" +
+                               "<span class='clickable' onclick='sendOption(\"Coordenação de Direito\")'>Coordenação de Direito</span><br>" +
+                               "<span class='clickable' onclick='sendOption(\"Coordenação de Enfermagem\")'>Coordenação de Enfermagem</span><br>" +
+                               "<span class='clickable' onclick='sendOption(\"Coordenação de Farmácia\")'>Coordenação de Farmácia</span><br>" +
+                               "<span class='clickable' onclick='sendOption(\"Coordenação de Fisioterapia\")'>Coordenação de Fisioterapia</span><br>" +
+                               "<span class='clickable' onclick='sendOption(\"Coordenação de Medicina Veterinária\")'>Coordenação de Medicina Veterinária</span><br>" +
+                               "<span class='clickable' onclick='sendOption(\"Coordenação de Nutrição\")'>Coordenação de Nutrição</span><br>" +
+                               "<span class='clickable' onclick='sendOption(\"Coordenação de Odontologia\")'>Coordenação de Odontologia</span><br>" +
+                               "<span class='clickable' onclick='sendOption(\"Coordenação de Psicologia\")'>Coordenação de Psicologia</span>", "bot");
+                    break;
+                case 'coordenação de direito':
+                    addMessage("<p><b>Conheça a Coordenação de Direito:</b></p><br>" +
+
+                               ">Coordenação: Tamara Dantas Farias<br>" +
+                               "E-mail institucional: <a href='mailto:direito.garanhuns@uninassau.edu.br'>direito.garanhuns@uninassau.edu.br</a><br>" +
+                               "Advogada, Mestranda em Direitos Humanos (UFPE), Especialista em Direito do Trabalho e Previdenciário (ESMATRA).<br>" +
+                               "<b>Horário de atendimento:</b><br>" +
+                               "Segunda-feira (sede) - 17h00 às 21h30<br>" +
+                               "Terça-feira (sede) - 14h00 às 17h00 e das 19h00 às 22h00<br>" +
+                               "Quinta-feira (sede) - 14h00 às 17h00 e das 19h00 às 22h00<br>" +
+                               "Sexta-feira (sede) - 14h00 às 17h00", "bot");
+                break;
+		 		                case 'ead':
+                    addMessage("O horário de atendimento do setor EaD é de segunda a sexta, das 9h às 18h.", "bot");
+                    break;
+                case 'tutoria dol':
+                    addMessage("O horário de atendimento da Tutoria DOL é de segunda a sexta, das 9h às 18h.", "bot");
+                    break;
+                case 'direção':
+                    addMessage("O horário de atendimento da Direção é de segunda a sexta, das 9h às 18h.", "bot");
+                    break;
+                case 'enfermagem':
+                    addMessage("Enfermagem na UNINASSAU Garanhuns: Sua porta de entrada para o cuidado com amor!<br><br>Abrace a prática desde o início: Imerja no mundo da Enfermagem já no 1º período com laboratórios de ponta e vivências reais em hospitais e unidades de saúde, te conectando à realidade profissional desde o começo.<br><br>Aprenda com os melhores: Nossa equipe de enfermeiros experientes e mestres renomados te dará o conhecimento teórico e prático que você precisa para se destacar na assistência à saúde.<br><br>Pronto para o mercado: Nosso Núcleo de Práticas em Enfermagem te oferece vivências em diferentes áreas da profissão, te preparando para os desafios do mercado de trabalho e para as diversas especialidades da Enfermagem.<br><br>Mais que um curso: Oferecemos uma formação completa com laboratórios modernos, biblioteca especializada e acompanhamento individualizado, te garantindo uma experiência de aprendizado única.<br><br>Construa sua carreira de sucesso: Invista no seu futuro com o curso de Enfermagem da UNINASSAU Garanhuns e conquiste seus objetivos na área da saúde!<br><br>Faça a diferença na vida das pessoas: A Enfermagem é a profissão ideal para quem busca cuidar com amor, fazer a diferença na vida das pessoas e contribuir para a construção de uma sociedade mais saudável.<br><br>" +
+		    "> Junte-se a nós e faça parte da história, gostou?<br><br>" +
+                    "Escolha a forma de como pretende ingressar:<br><br>" +
+                    "<span class='clickable' onclick='sendOption(\"ENEM\")'>ENEM</span><br>" +
+                    "<span class='clickable' onclick='sendOption(\"Vestibular\")'>Vestibular</span><br>" +
+                    "<span class='clickable' onclick='sendOption(\"Transferência\")'>Transferência</span><br>" +
+                    "<span class='clickable' onclick='sendOption(\"Portador de Diploma\")'>Portador de Diploma</span>", "bot");
+                break;
+            case 'enem':
+                addMessage("Sua nota do ENEM pode te dar uma bolsa de até 100% de desconto até o final do curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição ENEM UNINASSAU</a>", "bot");
+                break;
+            case 'vestibular':
+                addMessage("Realize nosso vestibular hoje mesmo e ganhe uma bolsa de até 60% de desconto durante todo o curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores para realizar o vestibular:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição Vestibular UNINASSAU</a>", "bot");
+                break;
+            case 'transferência':
+                addMessage("Realize sua transferência hoje mesmo e garanta uma bolsa de até 65% de desconto até o final do curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores para realizar a transferência:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição Transferência UNINASSAU</a>", "bot");
+                break;
+            case 'portador de diploma':
+                addMessage("Ingresse por Portador de Diploma hoje mesmo e garanta uma bolsa de até 65% de desconto até o final do curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores para realizar a transferência:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição Portador de Diploma UNINASSAU</a>", "bot");
+
+                    break;
+                case 'farmácia':
+                    addMessage("Farmácia na UNINASSAU Garanhuns: Sua chave para o futuro da saúde!<br><br>Abrace a prática desde o início: Imerja no fascinante mundo da Farmácia já no 1º período com laboratórios de última geração e vivências reais em farmácias e indústrias farmacêuticas, te conectando à realidade profissional desde o começo.<br><br>Aprenda com os melhores: Nossa equipe de farmacêuticos experientes e mestres renomados te dará o conhecimento teórico e prático que você precisa para se destacar na área farmacêutica, seja na indústria, nas farmácias, na pesquisa ou na docência.<br><br>Pronto para o mercado: Nosso Núcleo de Práticas em Farmácia te oferece vivências em diferentes áreas da profissão, te preparando para os desafios do mercado de trabalho e para as diversas especialidades da Farmácia.<br><br>Mais que um curso: Oferecemos uma formação completa com laboratórios modernos, biblioteca especializada e acompanhamento individualizado, te garantindo uma experiência de aprendizado única e de alta qualidade.<br><br>Construa sua carreira de sucesso: Invista no seu futuro com o curso de Farmácia da UNINASSAU Garanhuns e conquiste seus objetivos na área da saúde!<br><br>Seja um agente transformador: A Farmácia é a profissão ideal para quem busca fazer a diferença na vida das pessoas, garantir o acesso a medicamentos de qualidade e contribuir para o desenvolvimento de novas terapias.<br><br>" +
+		    "> Junte-se a nós e faça parte da história, gostou?<br><br>" +
+                    "Escolha a forma de como pretende ingressar:<br><br>" +
+                    "<span class='clickable' onclick='sendOption(\"ENEM\")'>ENEM</span><br>" +
+                    "<span class='clickable' onclick='sendOption(\"Vestibular\")'>Vestibular</span><br>" +
+                    "<span class='clickable' onclick='sendOption(\"Transferência\")'>Transferência</span><br>" +
+                    "<span class='clickable' onclick='sendOption(\"Portador de Diploma\")'>Portador de Diploma</span>", "bot");
+                break;
+            case 'enem':
+                addMessage("Sua nota do ENEM pode te dar uma bolsa de até 100% de desconto até o final do curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição ENEM UNINASSAU</a>", "bot");
+                break;
+            case 'vestibular':
+                addMessage("Realize nosso vestibular hoje mesmo e ganhe uma bolsa de até 60% de desconto durante todo o curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores para realizar o vestibular:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição Vestibular UNINASSAU</a>", "bot");
+                break;
+            case 'transferência':
+                addMessage("Realize sua transferência hoje mesmo e garanta uma bolsa de até 65% de desconto até o final do curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores para realizar a transferência:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição Transferência UNINASSAU</a>", "bot");
+                break;
+            case 'portador de diploma':
+                addMessage("Ingresse por Portador de Diploma hoje mesmo e garanta uma bolsa de até 65% de desconto até o final do curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores para realizar a transferência:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição Portador de Diploma UNINASSAU</a>", "bot");
+
+                    break;
+                case 'fisioterapia':
+                    addMessage("Fisioterapia na UNINASSAU Garanhuns: Sua porta de entrada para o movimento e a qualidade de vida!<br><br>Abrace a prática desde o início: Imerja-se no universo da Fisioterapia já no 1º período com laboratórios de última geração, clínicas de fisioterapia e vivências reais em hospitais e unidades de saúde, te conectando à realidade profissional desde o começo.<br><br>Aprenda com os melhores: Nossa equipe de fisioterapeutas experientes e mestres renomados te dará o conhecimento teórico e prático que você precisa para se destacar na área, atuando na reabilitação de pacientes, na prevenção de doenças e na promoção da saúde.<br><br>Pronto para o mercado: Nosso Núcleo de Práticas em Fisioterapia te oferece vivências em diferentes áreas da profissão, te preparando para os desafios do mercado de trabalho e para as diversas especialidades da Fisioterapia.<br><br>Mais que um curso: Oferecemos uma formação completa com laboratórios modernos, biblioteca especializada, clínicas de fisioterapia e acompanhamento individualizado, te garantindo uma experiência de aprendizado única e de alta qualidade.<br><br>Construa sua carreira de sucesso: Invista no seu futuro com o curso de Fisioterapia da UNINASSAU Garanhuns e conquiste seus objetivos na área da saúde!<br><br>Faça a diferença na vida das pessoas: A Fisioterapia é a profissão ideal para quem busca cuidar com amor, ajudar pessoas a se recuperarem de lesões e doenças, melhorar sua qualidade de vida e promover o bem-estar físico e funcional delas.<br><br>" +
+		    "> Junte-se a nós e faça parte da história, gostou?<br><br>" +
+                    "Escolha a forma de como pretende ingressar:<br><br>" +
+                    "<span class='clickable' onclick='sendOption(\"ENEM\")'>ENEM</span><br>" +
+                    "<span class='clickable' onclick='sendOption(\"Vestibular\")'>Vestibular</span><br>" +
+                    "<span class='clickable' onclick='sendOption(\"Transferência\")'>Transferência</span><br>" +
+                    "<span class='clickable' onclick='sendOption(\"Portador de Diploma\")'>Portador de Diploma</span>", "bot");
+                break;
+            case 'enem':
+                addMessage("Sua nota do ENEM pode te dar uma bolsa de até 100% de desconto até o final do curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição ENEM UNINASSAU</a>", "bot");
+                break;
+            case 'vestibular':
+                addMessage("Realize nosso vestibular hoje mesmo e ganhe uma bolsa de até 60% de desconto durante todo o curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores para realizar o vestibular:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição Vestibular UNINASSAU</a>", "bot");
+                break;
+            case 'transferência':
+                addMessage("Realize sua transferência hoje mesmo e garanta uma bolsa de até 65% de desconto até o final do curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores para realizar a transferência:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição Transferência UNINASSAU</a>", "bot");
+                break;
+            case 'portador de diploma':
+                addMessage("Ingresse por Portador de Diploma hoje mesmo e garanta uma bolsa de até 65% de desconto até o final do curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores para realizar a transferência:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição Portador de Diploma UNINASSAU</a>", "bot");
+
+                    break;
+                case 'medicina veterinária':
+                    addMessage("Medicina Veterinária na UNINASSAU Garanhuns: Sua chave para o cuidado animal com excelência!<br><br>Abrace a prática desde o início: Imerja no fascinante mundo da Medicina Veterinária já no 1º período com laboratórios de última geração, clínicas veterinárias e vivências reais em zoológicos, criadores de animais e órgãos públicos, te conectando à realidade profissional desde o começo.<br><br>Aprenda com os melhores: Nossa equipe de médicos veterinários experientes e mestres renomados te dará o conhecimento teórico e prático que você precisa para se destacar na área, atuando na clínica de animais, na saúde pública, na pesquisa e na indústria pet.<br><br>Pronto para o mercado: Nosso Núcleo de Práticas em Medicina Veterinária te oferece vivências em diferentes áreas da profissão, te preparando para os desafios do mercado de trabalho e para as diversas especialidades da Medicina Veterinária.<br><br>Mais que um curso: Oferecemos uma formação completa com laboratórios modernos, biblioteca especializada, clínicas veterinárias e acompanhamento individualizado, te garantindo uma experiência de aprendizado única e de alta qualidade.<br><br>Construa sua carreira de sucesso: Invista no seu futuro com o curso de Medicina Veterinária da UNINASSAU Garanhuns e conquiste seus objetivos na área da saúde animal!<br><br>Faça a diferença na vida dos animais: A Medicina Veterinária é a profissão ideal para quem busca cuidar com amor, proteger a saúde dos animais, garantir o bem-estar animal e contribuir para a saúde pública.<br><br>" +
+		    "> Junte-se a nós e faça parte da história, gostou?<br><br>" +
+                    "Escolha a forma de como pretende ingressar:<br><br>" +
+                    "<span class='clickable' onclick='sendOption(\"ENEM\")'>ENEM</span><br>" +
+                    "<span class='clickable' onclick='sendOption(\"Vestibular\")'>Vestibular</span><br>" +
+                    "<span class='clickable' onclick='sendOption(\"Transferência\")'>Transferência</span><br>" +
+                    "<span class='clickable' onclick='sendOption(\"Portador de Diploma\")'>Portador de Diploma</span>", "bot");
+                break;
+            case 'enem':
+                addMessage("Sua nota do ENEM pode te dar uma bolsa de até 100% de desconto até o final do curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição ENEM UNINASSAU</a>", "bot");
+                break;
+            case 'vestibular':
+                addMessage("Realize nosso vestibular hoje mesmo e ganhe uma bolsa de até 60% de desconto durante todo o curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores para realizar o vestibular:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição Vestibular UNINASSAU</a>", "bot");
+                break;
+            case 'transferência':
+                addMessage("Realize sua transferência hoje mesmo e garanta uma bolsa de até 65% de desconto até o final do curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores para realizar a transferência:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição Transferência UNINASSAU</a>", "bot");
+                break;
+            case 'portador de diploma':
+                addMessage("Ingresse por Portador de Diploma hoje mesmo e garanta uma bolsa de até 65% de desconto até o final do curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores para realizar a transferência:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição Portador de Diploma UNINASSAU</a>", "bot");
+
+                    break;
+                case 'nutrição':
+                    addMessage("Nutrição na UNINASSAU Garanhuns: Sua porta de entrada para a saúde e o bem-estar!<br><br>Abrace a prática desde o início: Imerja no universo da Nutrição já no 1º período com laboratórios de última geração, cozinhas experimentais e vivências reais em restaurantes, unidades de saúde e empresas, te conectando à realidade profissional desde o começo.<br><br>Aprenda com os melhores: Nossa equipe de nutricionistas experientes e mestres renomados te dará o conhecimento teórico e prático que você precisa para se destacar na área, atuando na promoção da saúde, na educação alimentar e nutricional, na indústria alimentícia e na pesquisa.<br><br>Pronto para o mercado: Nosso Núcleo de Práticas em Nutrição te oferece vivências em diferentes áreas da profissão, te preparando para os desafios do mercado de trabalho e para as diversas especialidades da Nutrição.<br><br>Mais que um curso: Oferecemos uma formação completa com laboratórios modernos, biblioteca especializada, cozinhas experimentais e acompanhamento individualizado, te garantindo uma experiência de aprendizado única e de alta qualidade.<br><br>Construa sua carreira de sucesso: Invista no seu futuro com o curso de Nutrição da UNINASSAU Garanhuns e conquiste seus objetivos na área da saúde!<br><br>Faça a diferença na vida das pessoas: A Nutrição é a profissão ideal para quem busca cuidar com amor, ajudar pessoas a terem uma alimentação mais saudável, prevenir doenças e promover o bem-estar físico e mental delas.<br><br>" +
+		    "> Junte-se a nós e faça parte da história, gostou?<br><br>" +
+                    "Escolha a forma de como pretende ingressar:<br><br>" +
+                    "<span class='clickable' onclick='sendOption(\"ENEM\")'>ENEM</span><br>" +
+                    "<span class='clickable' onclick='sendOption(\"Vestibular\")'>Vestibular</span><br>" +
+                    "<span class='clickable' onclick='sendOption(\"Transferência\")'>Transferência</span><br>" +
+                    "<span class='clickable' onclick='sendOption(\"Portador de Diploma\")'>Portador de Diploma</span>", "bot");
+                break;
+            case 'enem':
+                addMessage("Sua nota do ENEM pode te dar uma bolsa de até 100% de desconto até o final do curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição ENEM UNINASSAU</a>", "bot");
+                break;
+            case 'vestibular':
+                addMessage("Realize nosso vestibular hoje mesmo e ganhe uma bolsa de até 60% de desconto durante todo o curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores para realizar o vestibular:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição Vestibular UNINASSAU</a>", "bot");
+                break;
+            case 'transferência':
+                addMessage("Realize sua transferência hoje mesmo e garanta uma bolsa de até 65% de desconto até o final do curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores para realizar a transferência:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição Transferência UNINASSAU</a>", "bot");
+                break;
+            case 'portador de diploma':
+                addMessage("Ingresse por Portador de Diploma hoje mesmo e garanta uma bolsa de até 65% de desconto até o final do curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores para realizar a transferência:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição Portador de Diploma UNINASSAU</a>", "bot");
+
+                    break;
+                case 'odontologia':
+                    addMessage("Odontologia na UNINASSAU Garanhuns: Seu sorriso para o sucesso!<br><br>Abrace a prática desde o início: Imerja-se no fascinante mundo da Odontologia já no 1º período com clínicas odontológicas de última geração, laboratórios de anatomia e vivências reais em hospitais, unidades de saúde e consultórios odontológicos, te conectando à realidade profissional desde o começo.<br><br>Aprenda com os melhores: Nossa equipe de dentistas experientes e mestres renomados te dará o conhecimento teórico e prático que você precisa para se destacar na área, atuando na prevenção e no tratamento de doenças bucais, na estética dental e na ortodontia.<br><br>Pronto para o mercado: Nosso Núcleo de Práticas em Odontologia te oferece vivências em diferentes áreas da profissão, te preparando para os desafios do mercado de trabalho e para as diversas especialidades da Odontologia.<br><br>Mais que um curso: Oferecemos uma formação completa com clínicas odontológicas modernas, laboratórios de última geração, biblioteca especializada e acompanhamento individualizado, te garantindo uma experiência de aprendizado única e de alta qualidade.<br><br>Construa sua carreira de sucesso: Invista no seu futuro com o curso de Odontologia da UNINASSAU Garanhuns e conquiste seus objetivos na área da saúde bucal!<br><br>Faça a diferença na vida das pessoas: A Odontologia é a profissão ideal para quem busca cuidar com amor, promover a saúde bucal das pessoas, melhorar sua qualidade de vida e aumentar sua autoestima.<br><br>" +
+		    "> Junte-se a nós e faça parte da história, gostou?<br><br>" +
+                    "Escolha a forma de como pretende ingressar:<br><br>" +
+                    "<span class='clickable' onclick='sendOption(\"ENEM\")'>ENEM</span><br>" +
+                    "<span class='clickable' onclick='sendOption(\"Vestibular\")'>Vestibular</span><br>" +
+                    "<span class='clickable' onclick='sendOption(\"Transferência\")'>Transferência</span><br>" +
+                    "<span class='clickable' onclick='sendOption(\"Portador de Diploma\")'>Portador de Diploma</span>", "bot");
+                break;
+            case 'enem':
+                addMessage("Sua nota do ENEM pode te dar uma bolsa de até 100% de desconto até o final do curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição ENEM UNINASSAU</a>", "bot");
+                break;
+            case 'vestibular':
+                addMessage("Realize nosso vestibular hoje mesmo e ganhe uma bolsa de até 60% de desconto durante todo o curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores para realizar o vestibular:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição Vestibular UNINASSAU</a>", "bot");
+                break;
+            case 'transferência':
+                addMessage("Realize sua transferência hoje mesmo e garanta uma bolsa de até 65% de desconto até o final do curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores para realizar a transferência:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição Transferência UNINASSAU</a>", "bot");
+                break;
+            case 'portador de diploma':
+                addMessage("Ingresse por Portador de Diploma hoje mesmo e garanta uma bolsa de até 65% de desconto até o final do curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores para realizar a transferência:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição Portador de Diploma UNINASSAU</a>", "bot");
+
+                    break;
+                case 'psicologia':
+                    addMessage("Psicologia na UNINASSAU Garanhuns: Sua jornada para o autoconhecimento e a transformação da sociedade!<br><br>Abrace a prática desde o início: Imerja-se no universo da Psicologia já no 1º período com laboratórios de última geração, vivências em instituições de saúde mental, escolas e empresas, te conectando à realidade profissional desde o começo.<br><br>Aprenda com os melhores: Nossa equipe de psicólogos experientes e mestres renomados te dará o conhecimento teórico e prático que você precisa para se destacar na área, atuando na clínica, na educação, nas organizações e na pesquisa.<br><br>Explore as diversas áreas da Psicologia: A UNINASSAU Garanhuns oferece uma formação completa que te permite explorar as diversas áreas da Psicologia, como:<br><br>• Psicologia Clínica<br>• Psicologia da Educação<br>• Psicologia Organizacional<br>• Psicologia Social<br>• Neuropsicologia<br>• Psicanálise<br>• Psicologia do Desenvolvimento<br><br>Pronto para o mercado: Nosso Núcleo de Práticas em Psicologia te oferece vivências em diferentes áreas da profissão, te preparando para os desafios do mercado de trabalho e para as diversas especialidades da Psicologia.<br><br>Mais que um curso: Oferecemos uma formação completa com laboratórios modernos, biblioteca especializada, clínicas de psicologia e acompanhamento individualizado, te garantindo uma experiência de aprendizado única e de alta qualidade.<br><br>Construa sua carreira de sucesso: Invista no seu futuro com o curso de Psicologia da UNINASSAU Garanhuns e conquiste seus objetivos na área da saúde mental e do bem-estar!<br><br>Faça a diferença na vida das pessoas: A Psicologia é a profissão ideal para quem busca cuidar com amor, ajudar pessoas a superarem seus desafios, melhorarem suas relações interpessoais e alcançarem seu pleno potencial.<br><br>" +
+		    "> Junte-se a nós e faça parte da história, gostou?<br><br>" +
+                    "Escolha a forma de como pretende ingressar:<br><br>" +
+                    "<span class='clickable' onclick='sendOption(\"ENEM\")'>ENEM</span><br>" +
+                    "<span class='clickable' onclick='sendOption(\"Vestibular\")'>Vestibular</span><br>" +
+                    "<span class='clickable' onclick='sendOption(\"Transferência\")'>Transferência</span><br>" +
+                    "<span class='clickable' onclick='sendOption(\"Portador de Diploma\")'>Portador de Diploma</span>", "bot");
+                break;
+            case 'enem':
+                addMessage("Sua nota do ENEM pode te dar uma bolsa de até 100% de desconto até o final do curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição ENEM UNINASSAU</a>", "bot");
+                break;
+            case 'vestibular':
+                addMessage("Realize nosso vestibular hoje mesmo e ganhe uma bolsa de até 60% de desconto durante todo o curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores para realizar o vestibular:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição Vestibular UNINASSAU</a>", "bot");
+                break;
+            case 'transferência':
+                addMessage("Realize sua transferência hoje mesmo e garanta uma bolsa de até 65% de desconto até o final do curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores para realizar a transferência:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição Transferência UNINASSAU</a>", "bot");
+                break;
+            case 'portador de diploma':
+                addMessage("Ingresse por Portador de Diploma hoje mesmo e garanta uma bolsa de até 65% de desconto até o final do curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores para realizar a transferência:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição Portador de Diploma UNINASSAU</a>", "bot");
+
+case 'direito':
+                    addMessage("Direito na UNINASSAU Garanhuns: Sua chave para a justiça e a transformação social!<br>" +
+                    "> Abrace a prática desde o início: Imerja-se no fascinante mundo do Direito já no 1º período com o Tribunal do Júri da UNINASSAU, escritórios jurídicos simulados e vivências reais em fóruns, tribunais e órgãos públicos, te conectando à realidade profissional desde o começo.<br><br>" +
+                    "> Aprenda com os melhores: Nossa equipe de professores experientes mestres e doutores renomados te dará o conhecimento teórico e prático que você precisa para se destacar na área, atuando na advocacia e na assessoria jurídica.<br><br>" +
+                    "> Explore as diversas áreas do Direito: A UNINASSAU Garanhuns oferece uma formação completa que te permite explorar as diversas áreas do Direito, como:<br><br>" +
+                    "Direito Civil<br>Direito Penal<br>Direito Processual Civil<br>Direito Processual Penal<br>Direito Constitucional<br>Direito Administrativo<br>Direito do Trabalho<br>Direito Tributário<br>Direito Empresarial<br>Direito Internacional<br><br>" +
+                    "> Pronto para o mercado: Nosso Núcleo de Práticas Jurídicas te oferece vivências em diferentes áreas do Direito, te preparando para os desafios do mercado de trabalho e para as diversas especialidades do Direito.<br><br>" +
+                    "> Mais que um curso: Oferecemos uma formação completa com Tribunal do Júri da UNINASSAU, escritórios jurídicos simulados, biblioteca especializada e acompanhamento individualizado, te garantindo uma experiência de aprendizado única e de alta qualidade.<br><br>" +
+                    "> Construa sua carreira de sucesso: Invista no seu futuro com o curso de Direito da UNINASSAU Garanhuns e conquiste seus objetivos na área da justiça e da defesa dos direitos!<br><br>" +
+                    "> Faça a diferença na vida das pessoas e na sociedade: O Direito é a profissão ideal para quem busca defender os direitos das pessoas, lutar pela justiça social e contribuir para a construção de uma sociedade mais justa e igualitária.<br><br>" +
+                    "> Junte-se a nós e faça parte da história, gostou?<br><br>" +
+                    "Escolha a forma de como pretende ingressar:<br><br>" +
+                    "<span class='clickable' onclick='sendOption(\"ENEM\")'>ENEM</span><br>" +
+                    "<span class='clickable' onclick='sendOption(\"Vestibular\")'>Vestibular</span><br>" +
+                    "<span class='clickable' onclick='sendOption(\"Transferência\")'>Transferência</span><br>" +
+                    "<span class='clickable' onclick='sendOption(\"Portador de Diploma\")'>Portador de Diploma</span>", "bot");
+                break;
+            case 'enem':
+                addMessage("Sua nota do ENEM pode te dar uma bolsa de até 100% de desconto até o final do curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição ENEM UNINASSAU</a>", "bot");
+                break;
+            case 'vestibular':
+                addMessage("Realize nosso vestibular hoje mesmo e ganhe uma bolsa de até 60% de desconto durante todo o curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores para realizar o vestibular:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição Vestibular UNINASSAU</a>", "bot");
+                break;
+            case 'transferência':
+                addMessage("Realize sua transferência hoje mesmo e garanta uma bolsa de até 65% de desconto até o final do curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores para realizar a transferência:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição Transferência UNINASSAU</a>", "bot");
+                break;
+            case 'portador de diploma':
+                addMessage("Ingresse por Portador de Diploma hoje mesmo e garanta uma bolsa de até 65% de desconto até o final do curso.<br><br>" +
+                    "Clique no link abaixo e fale direto com um dos nossos consultores para realizar a transferência:<br>" +
+                    "<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a><br><br>" +
+                    "Ou se preferir, pode realizar sua inscrição direto clicando no link abaixo:<br>" +
+                    "<a href='https://vestibular.uninassau.edu.br/PS_Nassau/EscolhaCurso.aspx?Cidade=Garanhuns&UF=PE' target='_blank'>Inscrição Portador de Diploma UNINASSAU</a>", "bot");
+                break;
+            default:
+                addMessage("Desculpe, não entendi sua mensagem. Você pode repetir?", "bot");
+                break;
+	      
+
+        }
+    }
+</script>
+
+</body>
+</html>
