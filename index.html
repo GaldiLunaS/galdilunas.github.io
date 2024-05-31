@@ -2,10 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Chatbot Uninassau Garanhuns">
-    <meta name="author" content="GaldiLuna">
     <title>Chatbot UNINASSAU Garanhuns</title>
     <style>
         body {
@@ -62,7 +59,7 @@
             cursor: pointer;
         }
         #logo {
-            width: 40%
+            width: 100px;
             display: block;
             margin: 20px auto;
         }
@@ -75,7 +72,7 @@
 </head>
 <body>
     <div id="chat-container">
-        <img id="logo" src="images/logo01.jpeg" alt="Logo UNINASSAU">
+        <img id="logo" src="https://seeklogo.com/images/U/uninassau-logo-8D1A63F2A8-seeklogo.com.png" alt="Logo UNINASSAU">
         <div id="chat-box">
 
             <div class="message bot-message">
@@ -169,23 +166,54 @@
 "Você também pode preencher nosso formulário clicando no link abaixo que entraremos em contato contigo:<br>" +
 "<a href='https://forms.office.com/r/wDeZzuEmQ4text='target='_blank'>https://forms.office.com/r/wDeZzuEmQ4text=</a><br><br>" +
 "Ou se preferir, pode realizar a inscrição direto com um dos nossos consultores clicando no link abaixo:<br>" +
-"<<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a>", "bot");
+"<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a>", "bot");
                     break;
                 case 'pós-graduação':
                     addMessage("Temos diversas opções de Pós-Graduação para você se especializar. Clique no link abaixo e conheça nossos cursos de Pós-Graduação.<br><br><a href='https://posdigital.uninassau.edu.br' target='_blank'>posdigital.uninassau.edu.br</a><br><br>" +
 "Você também pode preencher nosso formulário clicando no link abaixo que entraremos em contato contigo:<br>" +
 "<a href='https://forms.office.com/r/wDeZzuEmQ4text='target='_blank'>https://forms.office.com/r/wDeZzuEmQ4text=</a><br><br>" +
 "Ou se preferir, pode realizar a inscrição direto com um dos nossos consultores clicando no link abaixo:<br>" +
-"<<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a>", "bot");
+"<a href='https://wa.me/558781130666?text=' target='_blank'>https://wa.me/558781130666?text=</a>", "bot");
                     break;
                 case 'técnicos':
                     addMessage("Oferecemos cursos técnicos em várias áreas. Clique no link abaixo e conheça nossos cursos técnicos.<br><br><a href='https://www.uninassau.edu.br/tecnicos' target='_blank'>Cursos Técnicos UNINASSAU</a>", "bot");
                     break;
                 case 'cra':
-                    addMessage("O horário de atendimento do CRA é de segunda a sexta, das 9h às 18h.", "bot");
+                    addMessage("<b>O horário de atendimento da CRA.</b><br>" + 
+				"<p>Segunda a sexta-feira, das 12h00 às 22h00.<br>" +
+				"Sábado das 08h00 às 13h00.<br>"+ 
+				"<p>Ou se preferir pode assistir um dos nossos vídeos didáticos, escolha o assunto abaixo:<br>" + 
+"<p><b>Vídeo de como abrir chamado.</b><br>" + 
+"<p><a href='https://www.youtube.com/watch?v=7phq1M5-bFI'target='_blank'>https://www.youtube.com/watch?v=7phq1M5-bFI</a>" +
+    "<p><b>Vídeo - Primeiro Acesso Ao Portal Acadêmico do Aluno.</b><br>" + 
+    "<p><a href='https://www.youtube.com/watch?v=KsqSZANkAY4&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=1'target='_blank'>https://www.youtube.com/watch?v=KsqSZANkAY4&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=1</a>" +
+        "<p><b>Vídeo - Alterar a senha do portal do aluno.</b><br>" + 
+        "<p><a href='https://www.youtube.com/watch?v=yCxyt8l85Ig'target='_blank'>https://www.youtube.com/watch?v=yCxyt8l85Ig</a>" +
+	    "<p><b>Vídeo - Renovação de matrícula.</b><br>" + 
+	    "<p><a href='https://www.youtube.com/watch?v=dU4paExDttI&t=20s'target='_blank'>https://www.youtube.com/watch?v=dU4paExDttI&t=20s</a>" +
+	        "<p><b>Vídeo - Alteração do Vencimento do Boleto.</b><br>" + 
+	        "<p><a href='https://www.youtube.com/watch?v=cZYIWJ6khyM&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=3'target='_blank'>https://www.youtube.com/watch?     		v=cZYIWJ6khyM&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=3</a>" +
+		    "<p><b>Vídeo - Acessando a Sala Teams.</b><br>" + 
+		    "<p><a href='https://www.youtube.com/watch?v=gWpO5NwMtsU&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=4'target='_blank'> 					    https://www.youtube.com/watch?v=gWpO5NwMtsU&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=4</a>" +
+		        "<p><b>Vídeo - Como Fazer um Ajuste de Mensalidade.</b><br>" + 
+                        "<p><a href='https://www.youtube.com/watch?v=v6g4H-xp--c&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=5'target='_blank'> 				        https://www.youtube.com/watch?v=v6g4H-xp--c&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=5</a>" +
+			    "<p><b>Vídeo - Conheça o Portal Acadêmico do Aluno.</b><br>" + 
+                            "<p><a href='https://www.youtube.com/watch?v=sAsoe0XCBd0&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=7'target='_blank'> 				            https://www.youtube.com/watch?v=sAsoe0XCBd0&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=7</a>" +
+			        "<p><b>Vídeo - Emissão de Documentos via Portal do Aluno.</b><br>" + 
+                                "<p><a href='https://www.youtube.com/watch?v=v2XCc6aPCtY&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=8'target='_blank'> 				        https://www.youtube.com/watch?v=v2XCc6aPCtY&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=8</a>" +
+				    "<p><b>Vídeo - Registro e Acompanhamento de Atividades Complementares.</b><br>" + 
+                                    "<p><a href='https://www.youtube.com/watch?v=i3NLoFC8BbE&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=9'target='_blank'> 				            https://www.youtube.com/watch?v=i3NLoFC8BbE&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=9</a>" +
+  				        "<p><b>Vídeo -  Inclusão de Disciplinas.</b><br>" + 
+                                        "<p><a href='https://www.youtube.com/watch?v=rzzHoB21D0k&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=10'target='_blank'> 				        https://www.youtube.com/watch?v=rzzHoB21D0k&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=10</a>" +
+					    "<p><b>Vídeo - Acessar o AVA - BlackBoard.</b><br>" + 
+                                            "<p><a href='https://www.youtube.com/watch?v=QRN3EyZ4-OQ&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=12'target='_blank'> 				            https://www.youtube.com/watch?v=QRN3EyZ4-OQ&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=12</a>" +
+"<p><b>Vídeo - Acessando o AVA / Disciplinas Híbridas.</b><br>" + 
+                                            "<p><a href='https://www.youtube.com/watch?v=k8a7gGS7nQE&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=13'target='_blank'> 				            https://www.youtube.com/watch?v=k8a7gGS7nQE&list=PLDJd-k6uHfReC1qtTRCE32kGvAO_l4HYE&index=13</a>",
+
+			 "bot");
                     break;
                 case 'nae':
-                    addMessage("O horário de atendimento do NAE é de segunda a sexta, das 9h às 18h.", "bot");
+                    addMessage("<b>O horário de atendimento do NAE.</b><br>" + "<p>Segunda a sexta-feira, das 18h00 às 22h00.", "bot");
                     break;
                 
 case 'coordenação de curso':
@@ -268,7 +296,7 @@ case 'coordenação de enfermagem':
                     addMessage("Conheça a Coordenação de Odontologia:<br>" +
                            "<p>➡️<b>Coordenação:</b> Arthur Bezerra de Barros Rocha<br>" +
                            "<p>➡️<b>E-mail institucional:</b> <a href='mailto:arthur.rocha@uninassau.edu.br'>arthur.rocha@uninassau.edu.br</a><br>" +
-                           "<p>➡️<b>Biografia</b>: Cirurgião-Dentista, Especialista em Dentística, trabalhou 3 anos em um PSF.<br>" +
+                           "<p>➡️<b>Biografia</b>: Especialista pelo CPGO - Recife, na área de Dentística. Graduado pela Universidade Federal de Alagoas Ganhador do prêmio destaque CNPQ do ano de 2017.  Possui uma patente na area de matériais Odontológicos Experiência Clínica e vivência SUS.<br>" +
                            "<p>➡️<b>Horário de atendimento:</b><br>" +
                            "Segunda-feira (col. XV) - 19h40 às 21h<br>" +
                            "Terça-feira (sede) - 15h às 17h<br>" +
@@ -286,22 +314,27 @@ case 'coordenação de enfermagem':
                            "Quinta-feira (sede) - 10h às 15h", "bot");
                 break;
 		 		                case 'ead':
-                    addMessage("O horário de atendimento do setor EaD é de segunda a sexta, das 9h às 18h.", "bot");
+                    addMessage("<b>O horário de atendimento do EaD.</b><br>"+ "<p>Segunda a sexta-feira, das 08h00 às 18h00.", "bot");
                     break;
                 case 'tutoria dol':
-                    addMessage("O horário de atendimento da Tutoria DOL é de segunda a sexta, das 9h às 18h.", "bot");
+                    addMessage("<b>O horário de atendimento da Tutoria DOL.</b><br>"+ "<p>Segunda a sexta-feira, das 12h00 às 22h00.", "bot");
                     break;
                 case 'direção':
-                    addMessage("O horário de atendimento da Direção é de segunda a sexta, das 9h às 18h.", "bot");
+                    addMessage("<b>O horário de atendimento da Direção.</b><br>"+ 
+"<p>Segunda e terça-feira das 19h00 às 21h00<br>"+
+"Quinta-feira das 14h00 às 21h00.<br>"+ 
+"Sexta-feira das 15h00 às 18h00.", "bot");
                     break;
                 case 'enfermagem':
-                    addMessage("Enfermagem é na <b>UNINASSAU</b> Garanhuns: Sua porta de entrada para o cuidado com amor!<br><br>Abrace a prática desde o início: Imerja no mundo da Enfermagem já no 1º período com laboratórios de ponta e vivências reais em hospitais e unidades de saúde, te conectando à realidade profissional desde o começo.<br><br>Aprenda com os melhores: Nossa equipe de enfermeiros experientes e mestres renomados te dará o conhecimento teórico e prático que você precisa para se destacar na assistência à saúde.<br><br>Pronto para o mercado: Nosso Núcleo de Práticas em Enfermagem te oferece vivências em diferentes áreas da profissão, te preparando para os desafios do mercado de trabalho e para as diversas especialidades da Enfermagem.<br><br>Mais que um curso: Oferecemos uma formação completa com laboratórios modernos, biblioteca especializada e acompanhamento individualizado, te garantindo uma experiência de aprendizado única.<br><br>Construa sua carreira de sucesso: Invista no seu futuro com o curso de Enfermagem da UNINASSAU Garanhuns e conquiste seus objetivos na área da saúde!<br><br>Faça a diferença na vida das pessoas: A Enfermagem é a profissão ideal para quem busca cuidar com amor, fazer a diferença na vida das pessoas e contribuir para a construção de uma sociedade mais saudável.<br><br>" +
+                    addMessage("Enfermagem é na <b>UNINASSAU</b> Garanhuns: Sua porta de entrada para o cuidado com amor!<br><br>Abrace a prática desde o início: Imerja no mundo da Enfermagem já no 1º período com laboratórios de ponta e vivências reais te conectando à realidade profissional desde o começo.<br><br>Aprenda com os melhores: Nossa equipe de enfermeiros experientes e mestres renomados te dará o conhecimento teórico e prático que você precisa para se destacar na assistência à saúde.<br><br>Pronto para o mercado: Nosso Núcleo de Práticas em Enfermagem te oferece vivências em diferentes áreas da profissão, te preparando para os desafios do mercado de trabalho e para as diversas especialidades da Enfermagem.<br><br>Mais que um curso: Oferecemos uma formação completa com laboratórios modernos, biblioteca especializada e acompanhamento individualizado, te garantindo uma experiência de aprendizado única.<br><br>Construa sua carreira de sucesso: Invista no seu futuro com o curso de Enfermagem da UNINASSAU Garanhuns e conquiste seus objetivos na área da saúde!<br><br>Faça a diferença na vida das pessoas: A Enfermagem é a profissão ideal para quem busca cuidar com amor, fazer a diferença na vida das pessoas e contribuir para a construção de uma sociedade mais saudável.<br><br>" +
 		    "Junte-se a nós, e faça parte da nossa história.<br><br>" +
                     "<b>Escolha a forma de como pretende ingressar:</b><br><br>" +
                     "<span class='clickable' onclick='sendOption(\"ENEM\")'>ENEM</span><br>" +
                     "<span class='clickable' onclick='sendOption(\"Vestibular\")'>Vestibular</span><br>" +
                     "<span class='clickable' onclick='sendOption(\"Transferência\")'>Transferência</span><br>" +
-                    "<span class='clickable' onclick='sendOption(\"Portador de Diploma\")'>Portador de Diploma</span>", "bot");
+                    "<span class='clickable' onclick='sendOption(\"Portador de Diploma\")'>Portador de Diploma</span><br>" +
+"<p>Você também pode preencher nosso formulário clicando no link abaixo que entraremos em contato contigo:<br>" +
+"<a href='https://forms.office.com/r/wDeZzuEmQ4text='target='_blank'>https://forms.office.com/r/wDeZzuEmQ4text=", "bot");
                 break;
             case 'enem':
                 addMessage("Sua nota do ENEM pode te dar uma bolsa de até 100% de desconto até o final do curso.<br><br>" +
@@ -339,7 +372,9 @@ case 'coordenação de enfermagem':
                     "<span class='clickable' onclick='sendOption(\"ENEM\")'>ENEM</span><br>" +
                     "<span class='clickable' onclick='sendOption(\"Vestibular\")'>Vestibular</span><br>" +
                     "<span class='clickable' onclick='sendOption(\"Transferência\")'>Transferência</span><br>" +
-                    "<span class='clickable' onclick='sendOption(\"Portador de Diploma\")'>Portador de Diploma</span>", "bot");
+                    "<span class='clickable' onclick='sendOption(\"Portador de Diploma\")'>Portador de Diploma</span><br>" +
+"<p>Você também pode preencher nosso formulário clicando no link abaixo que entraremos em contato contigo:<br>" +
+"<a href='https://forms.office.com/r/wDeZzuEmQ4text='target='_blank'>https://forms.office.com/r/wDeZzuEmQ4text=", "bot");
                 break;
             case 'enem':
                 addMessage("Sua nota do ENEM pode te dar uma bolsa de até 100% de desconto até o final do curso.<br><br>" +
@@ -377,7 +412,9 @@ case 'coordenação de enfermagem':
                     "<span class='clickable' onclick='sendOption(\"ENEM\")'>ENEM</span><br>" +
                     "<span class='clickable' onclick='sendOption(\"Vestibular\")'>Vestibular</span><br>" +
                     "<span class='clickable' onclick='sendOption(\"Transferência\")'>Transferência</span><br>" +
-                    "<span class='clickable' onclick='sendOption(\"Portador de Diploma\")'>Portador de Diploma</span>", "bot");
+                    "<span class='clickable' onclick='sendOption(\"Portador de Diploma\")'>Portador de Diploma</span><br>" +
+"<p>Você também pode preencher nosso formulário clicando no link abaixo que entraremos em contato contigo:<br>" +
+"<a href='https://forms.office.com/r/wDeZzuEmQ4text='target='_blank'>https://forms.office.com/r/wDeZzuEmQ4text=", "bot");
                 break;
             case 'enem':
                 addMessage("Sua nota do ENEM pode te dar uma bolsa de até 100% de desconto até o final do curso.<br><br>" +
@@ -415,7 +452,9 @@ case 'coordenação de enfermagem':
                     "<span class='clickable' onclick='sendOption(\"ENEM\")'>ENEM</span><br>" +
                     "<span class='clickable' onclick='sendOption(\"Vestibular\")'>Vestibular</span><br>" +
                     "<span class='clickable' onclick='sendOption(\"Transferência\")'>Transferência</span><br>" +
-                    "<span class='clickable' onclick='sendOption(\"Portador de Diploma\")'>Portador de Diploma</span>", "bot");
+                    "<span class='clickable' onclick='sendOption(\"Portador de Diploma\")'>Portador de Diploma</span><br>" +
+"<p>Você também pode preencher nosso formulário clicando no link abaixo que entraremos em contato contigo:<br>" +
+"<a href='https://forms.office.com/r/wDeZzuEmQ4text='target='_blank'>https://forms.office.com/r/wDeZzuEmQ4text=", "bot");
                 break;
             case 'enem':
                 addMessage("Sua nota do ENEM pode te dar uma bolsa de até 100% de desconto até o final do curso.<br><br>" +
@@ -453,7 +492,9 @@ case 'coordenação de enfermagem':
                     "<span class='clickable' onclick='sendOption(\"ENEM\")'>ENEM</span><br>" +
                     "<span class='clickable' onclick='sendOption(\"Vestibular\")'>Vestibular</span><br>" +
                     "<span class='clickable' onclick='sendOption(\"Transferência\")'>Transferência</span><br>" +
-                    "<span class='clickable' onclick='sendOption(\"Portador de Diploma\")'>Portador de Diploma</span>", "bot");
+                    "<span class='clickable' onclick='sendOption(\"Portador de Diploma\")'>Portador de Diploma</span><br>" +
+"<p>Você também pode preencher nosso formulário clicando no link abaixo que entraremos em contato contigo:<br>" +
+"<a href='https://forms.office.com/r/wDeZzuEmQ4text='target='_blank'>https://forms.office.com/r/wDeZzuEmQ4text=", "bot");
                 break;
             case 'enem':
                 addMessage("Sua nota do ENEM pode te dar uma bolsa de até 100% de desconto até o final do curso.<br><br>" +
@@ -491,7 +532,9 @@ case 'coordenação de enfermagem':
                     "<span class='clickable' onclick='sendOption(\"ENEM\")'>ENEM</span><br>" +
                     "<span class='clickable' onclick='sendOption(\"Vestibular\")'>Vestibular</span><br>" +
                     "<span class='clickable' onclick='sendOption(\"Transferência\")'>Transferência</span><br>" +
-                    "<span class='clickable' onclick='sendOption(\"Portador de Diploma\")'>Portador de Diploma</span>", "bot");
+                    "<span class='clickable' onclick='sendOption(\"Portador de Diploma\")'>Portador de Diploma</span><br>" +
+"<p>Você também pode preencher nosso formulário clicando no link abaixo que entraremos em contato contigo:<br>" +
+"<a href='https://forms.office.com/r/wDeZzuEmQ4text='target='_blank'>https://forms.office.com/r/wDeZzuEmQ4text=", "bot");
                 break;
             case 'enem':
                 addMessage("Sua nota do ENEM pode te dar uma bolsa de até 100% de desconto até o final do curso.<br><br>" +
@@ -529,7 +572,9 @@ case 'coordenação de enfermagem':
                     "<span class='clickable' onclick='sendOption(\"ENEM\")'>ENEM</span><br>" +
                     "<span class='clickable' onclick='sendOption(\"Vestibular\")'>Vestibular</span><br>" +
                     "<span class='clickable' onclick='sendOption(\"Transferência\")'>Transferência</span><br>" +
-                    "<span class='clickable' onclick='sendOption(\"Portador de Diploma\")'>Portador de Diploma</span>", "bot");
+                    "<span class='clickable' onclick='sendOption(\"Portador de Diploma\")'>Portador de Diploma</span><br>" +
+"<p>Você também pode preencher nosso formulário clicando no link abaixo que entraremos em contato contigo:<br>" +
+"<a href='https://forms.office.com/r/wDeZzuEmQ4text='target='_blank'>https://forms.office.com/r/wDeZzuEmQ4text=", "bot");
                 break;
             case 'enem':
                 addMessage("Sua nota do ENEM pode te dar uma bolsa de até 100% de desconto até o final do curso.<br><br>" +
@@ -574,7 +619,9 @@ case 'direito':
                     "<span class='clickable' onclick='sendOption(\"ENEM\")'>ENEM</span><br>" +
                     "<span class='clickable' onclick='sendOption(\"Vestibular\")'>Vestibular</span><br>" +
                     "<span class='clickable' onclick='sendOption(\"Transferência\")'>Transferência</span><br>" +
-                    "<span class='clickable' onclick='sendOption(\"Portador de Diploma\")'>Portador de Diploma</span>", "bot");
+                    "<span class='clickable' onclick='sendOption(\"Portador de Diploma\")'>Portador de Diploma</span><br>" +
+"<p>Você também pode preencher nosso formulário clicando no link abaixo que entraremos em contato contigo:<br>" +
+"<a href='https://forms.office.com/r/wDeZzuEmQ4text='target='_blank'>https://forms.office.com/r/wDeZzuEmQ4text=", "bot");
                 break;
             case 'enem':
                 addMessage("Sua nota do ENEM pode te dar uma bolsa de até 100% de desconto até o final do curso.<br><br>" +
